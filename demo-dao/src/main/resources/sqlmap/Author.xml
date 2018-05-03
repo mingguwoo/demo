@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="GBK" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Author">
+    <resultMap type="com.sh.demo.domain.Author" id="Author">
+        <id property="id" column="id"/>
+        <result property="pin" column="pin"/>
+        <result property="encryptPin" column="encrypt_pin" />
+        <result property="userName" column="username"/>
+        <result property="discoveryId" column="discovery_id"/>
+        <result property="discoveryName" column="discovery_name"/>
+        <result property="wechatId" column="wechat_id"/>
+        <result property="wechatName" column="wechat_name"/>
+        <result property="userPic" column="userpic"/>
+        <result property="phoneNumber" column="phone_number"/>
+        <result property="unionId" column="union_id"/>
+        <result property="parentPin" column="parent_pin"/>
+        <result property="parentUnionId" column="parent_union_id"/>
+        <result property="assignmentCenter" column="assignment_center"/>
+        <result property="investmentCenter" column="investment_center"/>
+        <result property="source" column="source"/>
+    </resultMap>
+    <select id="searchAuthorList" resultMap="Author">
+        select u.id, u.pin, u.username, u.discovery_id, u.discovery_name, u.wechat_id,
+        u.wechat_name, u.userpic, u.phone_number, u.union_id, u.parent_pin, u.encrypt_pin,
+        u.parent_union_id, a.assignment_center, a.investment_center,u.source
+        from cms_discovery_assignment_user u, cms_discovery_assignment_user_auth a
+        where u.pin = a.pin
+    </select>
+</mapper>
